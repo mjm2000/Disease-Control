@@ -1,0 +1,16 @@
+Converting GML script: ${project_dir}\scripts\scr_text\scr_text.gml
+Converted builtin - line 6: view_wview[0] -> __view_get( e__VW.WView, 0 )
+
+Converting GML script: ${project_dir}\objects\obj_text\Step_0.gml
+Converted description /// @description Add letters over time
+
+Windows NSIS Installer Script has been set to default due to changes in GameMaker Studio 2
+Added compatibility script 'instance/instance_create.gml'
+Added compatibility script 'object/object_get_depth.gml'
+Added compatibility script 'view/__view_get.gml'
+Added compatibility script 'view/__init_view.gml'
+Added compatibility script '__init_global.gml'
+Added compatibility script '__global_object_depths.gml'
+
+
+
