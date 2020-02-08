@@ -1,12 +1,4 @@
 
-import pygame
-import pygame_gui
-
-texts = [
-    "<b>A man has fallen into the river in lego city!</b>",
-    "<b>Build the new rescue helicopter!</b>",
-    "<b>HEY!!</b>"
-]
 
 # def run_game():
 #     pygame.init()
@@ -77,7 +69,14 @@ import pygame
 import pygame_gui
 from pygame.locals import *
 
-
+texts = [
+    "<p>A man has fallen into the river in lego city!</p>",
+    "<p>Build the new rescue helicopter!</p>",
+    "<p>HEY!!</p>",
+    "<p>Prepare the lifeline!</p>",
+    "<p>Lower the stretcher!</p>",
+    "<p>And make the rescue!</p>"
+]
 def run_game():
     pygame.init()
     pygame.display.set_caption('Disease Control')
@@ -126,10 +125,10 @@ def run_game():
     text_index = 0
 
     event_text_1 = pygame_gui.elements.ui_text_box.UITextBox(
-        'hello',
+        texts[text_index],
         relative_rect=pygame.Rect(
-            (170,120),
-            (500,150)
+            (1,249),
+            (598,150)
         ),
         manager=manager
     )
@@ -150,8 +149,8 @@ def run_game():
                     event_text_1 = pygame_gui.elements.ui_text_box.UITextBox(
                         texts[text_index],
                         relative_rect=pygame.Rect(
-                            (170,120),
-                            (500,150)
+                            (1,249),
+                            (598,150)
                         ),
                         manager=manager
                     )
