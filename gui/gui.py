@@ -5,9 +5,10 @@ from pygame.locals import *
 
 #this is just some dummy data
 texts = [
-    "<p>A man has fallen into the river in lego city!</p>",
-    "<p>Build the new rescue helicopter!</p>",
+    {"<p>A man has fallen into the river in lego city!</p>",
+    "<p>Start the new rescue helicopter!</p>",
     "<p>HEY!!</p>",
+    "<p>Build the helicopter and off to the rescue!</p>"
     "<p>Prepare the lifeline!</p>",
     "<p>Lower the stretcher!</p>",
     "<p>And make the rescue!</p>"
@@ -153,7 +154,6 @@ def run_game():
 
         #draws the textbox
         manager.draw_ui(ourDisplay)
-        pygame.draw.rect(ourDisplay,black,(600,0,700,600))
 
         pygame.display.update()
 
