@@ -126,7 +126,7 @@ def run_game():
     text_index = 0
 
     event_text_1 = pygame_gui.elements.ui_text_box.UITextBox(
-        texts[text_index],
+        'hello',
         relative_rect=pygame.Rect(
             (170,120),
             (500,150)
@@ -158,6 +158,7 @@ def run_game():
             manager.process_events(event)
         yesButton(0,400)
         black = (0,0,0)
+        manager.draw_ui(ourDisplay)
         pygame.draw.rect(ourDisplay,black,(600,0,700,600))
         sideBar(625,0)
         noButton(300,400)
