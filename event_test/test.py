@@ -1,4 +1,5 @@
 
+
 import pygame 
 import pygame_gui
 
@@ -13,8 +14,9 @@ def run_game():
 
     manager = pygame_gui.UIManager((800, 600))
 
-    clock = pygame_gui.time.Clock()
+    clock = pygame.time.Clock()
 
+    #gui button
     hello_button = pygame_gui.elements.UIButton(
         relative_rect=pygame.Rect(
             (350, 275),
@@ -23,6 +25,16 @@ def run_game():
         text='Say Hello',
         manager=manager
     )
+    
+    event_text_1 = pygame_gui.elements.ui_text_box.UITextBox(
+                "<p>HI</p>",    
+                relative_rect=pygame.Rect(
+                    (200,175),
+                    (150,100) 
+                ),
+                manager=manager 
+            )
+    
 
     is_running = True 
 
@@ -41,3 +53,4 @@ def run_game():
 
 
 run_game()
+
