@@ -13,7 +13,6 @@ def run_game():
     win_sur = pygame.display.set_mode((800,600))
     
     br = pygame.Surface((800,600))
-    br.fill(pygame.Color('#000f00'))
 
     manager = pygame_gui.UIManager((800, 600))
 
