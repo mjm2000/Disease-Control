@@ -3,6 +3,16 @@ import pygame
 import pygame_gui
 from pygame.locals import *
 
+#this is just some dummy data
+texts = [
+    "<p>A man has fallen into the river in lego city!</p>",
+    "<p>Build the new rescue helicopter!</p>",
+    "<p>HEY!!</p>",
+    "<p>Prepare the lifeline!</p>",
+    "<p>Lower the stretcher!</p>",
+    "<p>And make the rescue!</p>"
+]
+
 
 def run_game():
     pygame.init()
@@ -103,6 +113,19 @@ def run_game():
         textsurface = myfont.render(text, False, (255, 255, 255))
         ourDisplay.blit(textsurface, (x, y))
 
+
+    #this is the text box
+    text_index = 0
+
+    event_text_1 = pygame_gui.elements.ui_text_box.UITextBox(
+        texts[text_index],
+        relative_rect=pygame.Rect(
+            (1,249),
+            (598,150)
+        ),
+        manager=manager
+    )
+
     is_running = True
     while is_running:
         for event in pygame.event.get():
@@ -127,6 +150,11 @@ def run_game():
         moraletitle(660, 420)
         moralevariable(700, 450, "%")
         noButton(300,400)
+
+        #draws the textbox
+        manager.draw_ui(ourDisplay)
+        pygame.draw.rect(ourDisplay,black,(600,0,700,600))
+
         pygame.display.update()
 
 run_game()
