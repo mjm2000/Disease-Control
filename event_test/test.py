@@ -9,11 +9,10 @@ def run_game():
     win_sur = pygame.display.set_mode((800,600))
     
     br = pygame.Surface((800,600))
-    br.fill(pygame.Color('#000f00'))
 
     manager = pygame_gui.UIManager((800, 600))
 
-    clock = pygame_gui.time.Clock()
+    clock = pygame.time.Clock()
 
     hello_button = pygame_gui.elements.UIButton(
         relative_rect=pygame.Rect(
