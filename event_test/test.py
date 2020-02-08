@@ -1,8 +1,11 @@
-
-
-import pygame 
+import pygame
 import pygame_gui
 
+texts = [
+            "<b>A man has fallen into the river in lego city!</b>",
+            "<b>Build the new rescue helicopter!</b>",
+            "<b>HEY!!</b>"
+        ]
 
 def run_game():
     pygame.init() 
@@ -25,25 +28,41 @@ def run_game():
         text='Say Hello',
         manager=manager
     )
-    
+    text_index = 0
+
+    #this is the text box
     event_text_1 = pygame_gui.elements.ui_text_box.UITextBox(
-                "<p>HI</p>",    
-                relative_rect=pygame.Rect(
-                    (200,175),
-                    (150,100) 
-                ),
-                manager=manager 
-            )
-    
+        texts[text_index],
+        relative_rect=pygame.Rect(
+            (170,120),
+            (500,150)
+        ),
+        manager=manager
+    )
 
     is_running = True 
 
-    while is_running: 
+    while is_running:
+        #need to keep track of mouse position
+        mouse = pygame.mouse.get_pos()
+
         time_delta = clock.tick(60)/1000.0
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 is_running = False
             manager.process_events(event)
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_h:
+                    text_index += 1
+                    event_text_1 = pygame_gui.elements.ui_text_box.UITextBox(
+                        texts[text_index],
+                        relative_rect=pygame.Rect(
+                            (170,120),
+                            (500,150)
+                        ),
+                        manager=manager
+                    )
 
         win_sur.blit(br,(0,0))
 
