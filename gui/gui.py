@@ -17,18 +17,26 @@ def run_game():
     manager = pygame_gui.UIManager((800, 600))
 
     #Load Images
-    yesButtonImg = pygame.image.load('greenButtonwoop.png')
     noButtonImg = pygame.image.load('redButton.png')
+    noButtonImgHover = pygame.image.load('redButtonHover.png')
+
+    yesButtonImg = pygame.image.load('greenButtonwoop.png')
+    yesButtonHover = pygame.image.load('greenButton.png')
 
     #These two methods create a yes and a no button
     def yesButton(x,y):
-
         yesButtonPosition = Rect(0,x,0,y)
         yesButtonPosition.collidepoint(pygame.mouse.get_pos())
         yesButtonPosition = yesButtonImg.get_rect()
         yesButtonPosition = yesButtonPosition.move(x,y)
-        ourDisplay.blit(yesButtonImg, yesButtonPosition)
 
+        #Hover
+        if yesButtonPosition.collidepoint(pygame.mouse.get_pos()):
+            ourDisplay.blit(yesButtonHover, yesButtonPosition)
+        else:
+            ourDisplay.blit(yesButtonImg,yesButtonPosition)
+
+        #Click
         if event.type == MOUSEBUTTONDOWN:
             mouse_pos = event.pos # Now it will have the coordinates of click point.
             if yesButtonPosition.collidepoint(mouse_pos):
@@ -43,7 +51,12 @@ def run_game():
         noButtonPosition = noButtonImg.get_rect()
         noButtonPosition = noButtonPosition.move(x,y)
 
-        ourDisplay.blit(noButtonImg, (x, y))
+        #Hover
+        if noButtonPosition.collidepoint(pygame.mouse.get_pos()):
+            ourDisplay.blit(noButtonImgHover, noButtonPosition)
+        else:
+            ourDisplay.blit(noButtonImg,noButtonPosition)
+
         if event.type == MOUSEBUTTONDOWN:
             mouse_pos = event.pos # Now it will have the coordinates of click point.
             if noButtonPosition.collidepoint(mouse_pos):
