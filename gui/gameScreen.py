@@ -12,7 +12,7 @@ texts = [
     "<p>Build the helicopter and off to the rescue!</p>"
     "<p>Prepare the lifeline!</p>",
     "<p>Lower the stretcher!</p>",
-    "<p>And make the rescue!</p>"
+    "<p>And make the rescue!</p>"}
 ]
 
 
@@ -38,10 +38,15 @@ def run_game():
     backgroundImage = pygame.image.load('background.png')
 
     decreasearrowImg = pygame.image.load('downvote.png')
-    increasingarrowImg = pygame.image.load('upvote.png')
+    increasingarrowImg = pygame.image.load('upvote.png')\
+
+    personImg = pygame.image.load('person.png')
 
     #These two methods create a yes and a no button
+  #  global n
+
     def yesButton(x,y):
+
         yesButtonPosition = Rect(0,x,0,y)
         yesButtonPosition.collidepoint(pygame.mouse.get_pos())
         yesButtonPosition = yesButtonImg.get_rect()
@@ -57,6 +62,7 @@ def run_game():
         if event.type == MOUSEBUTTONDOWN:
             mouse_pos = event.pos # Now it will have the coordinates of click point.
             if yesButtonPosition.collidepoint(mouse_pos):
+                #global n
                 print("yes")
 
         #TODO Clickable Button changes button when clicked
@@ -91,14 +97,15 @@ def run_game():
     #this is the text box
     text_index = 0
 
-    event_text_1 = pygame_gui.elements.ui_text_box.UITextBox(
-        texts[text_index],
-        relative_rect=pygame.Rect(
-            (1,249),
-            (598,150)
-        ),
-        manager=manager
-    )
+    # event_text_1 = pygame_gui.elements.ui_text_box.UITextBox(
+    #     text = "They tryna be HEY",
+    #
+    #     relative_rect=pygame.Rect(
+    #         (1,249),
+    #         (598,150)
+    #     ),
+    #     manager=manager
+    # )
 
     is_running = True
     while is_running:
@@ -109,6 +116,7 @@ def run_game():
         black = (0,0,0)
         ourDisplay.fill(black)
         ourDisplay.blit(backgroundImage,(0,0))
+        ourDisplay.blit(personImg,(175,10))
         yesButton(0,400)
         pygame.draw.rect(ourDisplay,black,(600,0,700,600))
         gui.sideBar.weektitle(660,70)
