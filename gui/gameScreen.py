@@ -6,7 +6,7 @@ import gui.pygame_textinput
 from pygame.locals import *
 from event_test import results
 
-from event_test import html_reader
+#from event_test import html_reader
 
 #this is just some dummy data
 texts = [
@@ -286,6 +286,7 @@ def run_game():
 
                 if noButtonPosition.collidepoint(mouse_pos):
 
+
                     #clears out the previous week variable
                     textsurface = myfont.render(str(results.week), False, (0, 0, 0))
                     ourDisplay.blit(textsurface, (730, 70))
@@ -468,6 +469,8 @@ ourDisplay = pygame.display.set_mode((800, 600))
 running = True
 runningAgain = True
 background = pygame.image.load('titleScreen.png')
+global major
+global city
 def message_display(text):
     largeText = pygame.font.Font('OrthodoxHerbertarian.ttf',40)
     TextSurf, TextRect = text_main(text, largeText)
@@ -514,6 +517,7 @@ while runningAgain:
     # Blit its surface onto the screen
     ourDisplay.blit(textinput.get_surface(), (350, 500))
     pygame.display.update()
+print(city)
 run_game()
 
 
