@@ -3,6 +3,7 @@ import pygame
 import pygame_gui
 import gui.sideBar
 from pygame.locals import *
+from event_test import results
 
 #this is just some dummy data
 texts = [
@@ -71,7 +72,7 @@ texts = [
     }
 ]
 
-
+text_index = 0
 def run_game():
     pygame.init()
     pygame.display.set_caption('Disease Control')
@@ -94,7 +95,10 @@ def run_game():
     backgroundImage = pygame.image.load('background.png')
 
     decreasearrowImg = pygame.image.load('downvote.png')
-    increasingarrowImg = pygame.image.load('upvote.png')
+    increasingarrowImg = pygame.image.load('upvote.png')\
+
+    personImg = pygame.image.load('person.png')
+
 
     #This is the yes Button
     yesButtonPosition = Rect(0,0,0,400)
@@ -102,17 +106,7 @@ def run_game():
     yesButtonPosition = yesButtonImg.get_rect()
     yesButtonPosition = yesButtonPosition.move(0,400)
 
-        #Hover
-        if yesButtonPosition.collidepoint(pygame.mouse.get_pos()):
-            ourDisplay.blit(yesButtonHover, yesButtonPosition)
-        else:
-            ourDisplay.blit(yesButtonImg,yesButtonPosition)
-
-        #Click
-        if event.type == MOUSEBUTTONDOWN:
-            mouse_pos = event.pos # Now it will have the coordinates of click point.
-            if yesButtonPosition.collidepoint(mouse_pos):
-                print("yes")
+  #  global n
 
     #This is the No button
     noButtonPosition = Rect(0,300,0,400)
@@ -120,17 +114,6 @@ def run_game():
     noButtonPosition = noButtonImg.get_rect()
     noButtonPosition = noButtonPosition.move(300,400)
 
-        #Hover
-        if noButtonPosition.collidepoint(pygame.mouse.get_pos()):
-            ourDisplay.blit(noButtonImgHover, noButtonPosition)
-        else:
-            ourDisplay.blit(noButtonImg,noButtonPosition)
-
-        if event.type == MOUSEBUTTONDOWN:
-            mouse_pos = event.pos # Now it will have the coordinates of click point.
-            if noButtonPosition.collidepoint(mouse_pos):
-                print("no")
-        #TODO Clickable Button changes button when clicked
     def downarrow(x, y):
         ourDisplay.blit(decreasearrowImg, (x + 20, y))
 
@@ -142,6 +125,7 @@ def run_game():
 
 
     #this is the text box
+
     global text_index
     event_text_1 = pygame_gui.elements.ui_text_box.UITextBox(
         texts[text_index]['text'],
@@ -151,6 +135,19 @@ def run_game():
         ),
         manager=manager
     )
+
+    text_index = 0
+
+    # event_text_1 = pygame_gui.elements.ui_text_box.UITextBox(
+    #     text = "They tryna be HEY",
+    #
+    #     relative_rect=pygame.Rect(
+    #         (1,249),
+    #         (598,150)
+    #     ),
+    #     manager=manager
+    # )
+
 
     is_running = True
     while is_running:
@@ -169,7 +166,7 @@ def run_game():
                     mor = int(result["mor_y"])
                     dis = int(result["dis_y"])
 
-                    get_results(0, 5, 0)
+                    results.get_results(0, 5, 0)
 
 
                     #move to the next text box. We might want to change this later
@@ -193,7 +190,7 @@ def run_game():
                     mor = int(result["mor_n"])
                     dis = int(result["dis_n"])
 
-                    get_results(-5, -6, -5)
+                    results.get_results(-5, -6, -5)
 
                     #move to the next text box. We might want to change this later
                     text_index += 1
@@ -223,6 +220,12 @@ def run_game():
             ourDisplay.blit(noButtonImg,noButtonPosition)
 
         black = (0,0,0)
+
+        ourDisplay.fill(black)
+        ourDisplay.blit(backgroundImage,(0,0))
+        ourDisplay.blit(personImg,(175,10))
+
+
         pygame.draw.rect(ourDisplay,black,(600,0,700,600))
         gui.sideBar.weektitle(660,70)
         gui.sideBar.weekvariable(730, 70)
