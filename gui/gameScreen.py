@@ -138,27 +138,17 @@ def run_game():
 
     text_index = 0
 
-    # event_text_1 = pygame_gui.elements.ui_text_box.UITextBox(
-    #     text = "They tryna be HEY",
-    #
-    #     relative_rect=pygame.Rect(
-    #         (1,249),
-    #         (598,150)
-    #     ),
-    #     manager=manager
-    # )
-
-
     is_running = True
     while is_running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 is_running = False
 
-            #Click
+
             if event.type == MOUSEBUTTONDOWN:
                 mouse_pos = event.pos # Now it will have the coordinates of click point.
                 if yesButtonPosition.collidepoint(mouse_pos):
+                    textsurface = myfont.render("%", False, (255, 0, 0))
 
                     #get proper results
                     result = texts[text_index]
@@ -183,7 +173,13 @@ def run_game():
 
                 if noButtonPosition.collidepoint(mouse_pos):
                     #keeps track of current question
-
+                    textsurface = myfont.render("%", False, (255, 0, 0))
+                    ourDisplay.blit(textsurface, (730, 200))
+                    ourDisplay.blit(textsurface, (730, 320))
+                    ourDisplay.blit(textsurface, (730, 440))
+                    downarrow(730, 200)
+                    downarrow(730, 320)
+                    downarrow(730, 440)
                     #get proper results
                     result = texts[text_index]
                     pop = int(result["pop_n"])
@@ -205,8 +201,6 @@ def run_game():
                     )
 
             manager.process_events(event)
-        ourDisplay.fill(white)
-
         #Hover on yes button
         if yesButtonPosition.collidepoint(pygame.mouse.get_pos()):
             ourDisplay.blit(yesButtonHover, yesButtonPosition)
@@ -219,14 +213,14 @@ def run_game():
         else:
             ourDisplay.blit(noButtonImg,noButtonPosition)
 
-        black = (0,0,0)
 
-        ourDisplay.fill(black)
+
+
         ourDisplay.blit(backgroundImage,(0,0))
         ourDisplay.blit(personImg,(175,10))
 
 
-        pygame.draw.rect(ourDisplay,black,(600,0,700,600))
+        #pygame.draw.rect(ourDisplay,black,(600,0,700,600))
         gui.sideBar.weektitle(660,70)
         gui.sideBar.weekvariable(730, 70)
 
