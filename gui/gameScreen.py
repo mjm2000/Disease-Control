@@ -72,6 +72,63 @@ texts = [
     }
 ]
 
+answers = {
+    "1.1":
+        {
+            "pop_y": 0,
+            "mor_y": 0,
+            "dis_y": 0,
+            "pop_n": -5,
+            "mor_n": -7,
+            "dis_n": 5
+        },
+    "2.1":
+        {
+            "pop_y": 0,
+            "mor_y": 7,
+            "dis_y": 0,
+            "pop_n": -6,
+            "mor_n": -7,
+            "dis_n": 6
+        },
+    "3.1":
+        {
+            "pop_y": 0,
+            "mor_y": 7,
+            "dis_y": 0,
+            "pop_n": -8,
+            "mor_n": 5,
+            "dis_n": 8
+        },
+    "4.1":
+        {
+            "pop_y": 0,
+            "mor_y": 7,
+            "dis_y": 0,
+            "pop_n": -5,
+            "mor_n": -1,
+            "dis_n": 5
+        },
+    "5.1":
+        {
+            "pop_y": 0,
+            "mor_y": 7,
+            "dis_y": 0,
+            "pop_n": -9,
+            "mor_n": 0,
+            "dis_n": 9
+        },
+    "6.1":
+        {
+            "pop_y": 0,
+            "mor_y": 7,
+            "dis_y": 0,
+            "pop_n": -5,
+            "mor_n": -7,
+            "dis_n": 5
+        }
+}
+
 text_index = 0
 def run_game():
     pygame.init()
