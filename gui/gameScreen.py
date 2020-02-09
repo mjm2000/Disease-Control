@@ -73,12 +73,16 @@ texts = [
 ]
 
 text_index = 0
+global ourDisplay, display_width,display_height,clock
+
 def run_game():
     pygame.init()
     pygame.display.set_caption('Disease Control')
 
     white = (255,255,255)
     red = (255,0,0)
+    black = (0,0,0)
+
 
     display_width = 800
     display_height = 600
@@ -137,9 +141,6 @@ def run_game():
         manager=manager
     )
 
-    #Increments through the dummy data dictionary
-    text_index = 0
-
     is_running = True
     while is_running:
         for event in pygame.event.get():
@@ -151,7 +152,20 @@ def run_game():
             if event.type == MOUSEBUTTONDOWN:
                 mouse_pos = event.pos # Now it will have the coordinates of click point.
                 if yesButtonPosition.collidepoint(mouse_pos):
-                    textsurface = myfont.render("%", False, (255, 0, 0))
+                    textsurface = myfont.render(str(results.week), False, (0, 0, 0))
+                    ourDisplay.blit(textsurface, (730, 70))
+
+                    #clears out the previous population variable
+                    textsurface = myfont.render(str(results.population) + "%", False, (0, 0, 0))
+                    ourDisplay.blit(textsurface, (700, 210))
+
+                    #clears out the previous diseased variable
+                    textsurface = myfont.render(str(results.diseased) + "%", False, (0, 0, 0))
+                    ourDisplay.blit(textsurface, (700, 330))
+
+                    #clears out the previous morale variable
+                    textsurface = myfont.render(str(results.morale) + "%", False, (0, 0, 0))
+                    ourDisplay.blit(textsurface, (700, 450))
 
                     #get proper results
                     result = texts[text_index]
@@ -175,17 +189,20 @@ def run_game():
                     )
 
                 if noButtonPosition.collidepoint(mouse_pos):
-                    #keeps track of current question
+                    textsurface = myfont.render(str(results.week), False, (0, 0, 0))
+                    ourDisplay.blit(textsurface, (730, 70))
 
-                    #Goes over the current percentage and coloring it red and creating the down arror
-                    #for each category
-                    textsurface = myfont.render("%", False, (255, 0, 0))
-                    ourDisplay.blit(textsurface, (730, 200))
-                    ourDisplay.blit(textsurface, (730, 320))
-                    ourDisplay.blit(textsurface, (730, 440))
-                    downarrow(730, 200)
-                    downarrow(730, 320)
-                    downarrow(730, 440)
+                    #clears out the previous population variable
+                    textsurface = myfont.render(str(results.population) + "%", False, (0, 0, 0))
+                    ourDisplay.blit(textsurface, (700, 210))
+
+                    #clears out the previous diseased variable
+                    textsurface = myfont.render(str(results.diseased) + "%", False, (0, 0, 0))
+                    ourDisplay.blit(textsurface, (700, 330))
+
+                    #clears out the previous morale variable
+                    textsurface = myfont.render(str(results.morale) + "%", False, (0, 0, 0))
+                    ourDisplay.blit(textsurface, (700, 450))
                     #get proper results
                     result = texts[text_index]
                     pop = int(result["pop_n"])
@@ -245,7 +262,58 @@ def run_game():
         manager.draw_ui(ourDisplay)
 
         pygame.display.update()
+def text_objects(text, font):
+    black = (0,0,0)
+    textSurface = font.render(text, True, black)
+    return textSurface, textSurface.get_rect()
+def game_intro():
 
+    intro = True
+    clock = pygame.time.Clock()
+    display_width = 800
+    display_height = 600
+    ourDisplay = pygame.display.set_mode((display_width,display_height))
+    myfont = pygame.font.SysFont('Comic Sans MS', 40)
+    white =(255,255,255)
+    exitImg = pygame.image.load('exitButton.png')
+    playImg = pygame.image.load('startButton.png')
+
+    playImgPosition = Rect(100,0,0,400)
+    playImgPosition.collidepoint(pygame.mouse.get_pos())
+    playImgPosition = playImg.get_rect()
+    playImgPosition = playImgPosition.move(275,350)
+
+    exitImgPosition = Rect(200,0,0,500)
+    exitImgPosition.collidepoint(pygame.mouse.get_pos())
+    exitImgPosition = exitImg.get_rect()
+    exitImgPosition = exitImgPosition.move(275,450)
+
+
+    background = pygame.image.load('titleScreen.png')
+
+    while intro:
+        for event in pygame.event.get():
+            if event.type == MOUSEBUTTONDOWN:
+                mouse_pos = event.pos # Now it will have the coordinates of click point.
+                if playImgPosition.collidepoint(mouse_pos):
+                    intro = False
+                if exitImgPosition.collidepoint(mouse_pos):
+                    exit()
+
+        ourDisplay.blit(background,(0,0))
+        #TextSurf, TextRect = text_objects('Disease Control', largeText)
+        textsurface = myfont.render('Disease Control', False,white)
+        #text_rect = TextRect.get_rect(center=(display_width/2, display_height))
+
+        ourDisplay.blit(textsurface,(250,0))
+        ourDisplay.blit(playImg, playImgPosition)
+        ourDisplay.blit(exitImg, exitImgPosition)
+        pygame.display.update()
+        clock.tick(15)
+
+
+
+game_intro()
 run_game()
 
 
