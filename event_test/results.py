@@ -1,17 +1,17 @@
-global week
 week = 1
-
-global morale
 morale = 100
-
-global population
 population = 100
-
-global diseased
 diseased = 5
 
-def get_results(mor, pop, dis):
+def get_results(pop, mor, dis):
+    global week
     week += 1
+
+    global morale
     morale += mor
+
+    global population
     population += pop
+
+    global diseased
     diseased += dis
