@@ -2,6 +2,7 @@
 import pygame
 import pygame_gui
 import gui.sideBar
+import gui.pygame_textinput
 from pygame.locals import *
 from event_test import results
 
@@ -39,7 +40,7 @@ texts = [
     {
         "text": "<p>Build the helicopter and off to the rescue!</p>",
         "pop_y": "0",
-         "mor_y": "7",
+        "mor_y": "7",
         "dis_y": "0",
         "pop_n": "-5",
         "mor_n": "-7",
@@ -113,8 +114,7 @@ answers = {
         }
 }
 
-mayor = ""
-city = ""
+
 
 #questions = html_reader(mayor, city)
 
@@ -122,6 +122,8 @@ city = ""
 text_index = 0
 global ourDisplay, display_width,display_height,clock
 
+display_width = 800
+display_height = 600
 def run_game():
     pygame.init()
     pygame.display.set_caption('Disease Control')
@@ -146,7 +148,8 @@ def run_game():
     backgroundImage = pygame.image.load('background.png')
 
     decreasearrowImg = pygame.image.load('downvote.png')
-    increasingarrowImg = pygame.image.load('upvote.png')\
+    increasingarrowImg = pygame.image.load('upvote.png')
+    neutralcircleImg = pygame.image.load('neutral.png')
 
     personImg = pygame.image.load('person.png')
 
@@ -169,7 +172,10 @@ def run_game():
 
     #Creates up arrow
     def uparrow(x, y):
-        ourDisplay.blit(increasingarrowImg, (x + 80, y))
+        ourDisplay.blit(increasingarrowImg, (x + 20, y))
+
+    def neutral(x, y):
+        ourDisplay.blit(neutralcircleImg, (x + 20, y))
 
     #these are the texts for the sidebar
     myfont = pygame.font.SysFont('Comic Sans MS', 20)
@@ -199,20 +205,25 @@ def run_game():
             if event.type == MOUSEBUTTONDOWN:
                 mouse_pos = event.pos # Now it will have the coordinates of click point.
                 if yesButtonPosition.collidepoint(mouse_pos):
+
+                    #clears out the previous week variable
                     textsurface = myfont.render(str(results.week), False, (0, 0, 0))
                     ourDisplay.blit(textsurface, (730, 70))
 
                     #clears out the previous population variable
                     textsurface = myfont.render(str(results.population) + "%", False, (0, 0, 0))
                     ourDisplay.blit(textsurface, (700, 210))
+                    prevpopulation = int(results.population)
 
                     #clears out the previous diseased variable
                     textsurface = myfont.render(str(results.diseased) + "%", False, (0, 0, 0))
                     ourDisplay.blit(textsurface, (700, 330))
+                    prevdiseased = int(results.diseased)
 
                     #clears out the previous morale variable
                     textsurface = myfont.render(str(results.morale) + "%", False, (0, 0, 0))
                     ourDisplay.blit(textsurface, (700, 450))
+                    prevmorale = int(results.morale)
 
                     #get proper results
                     result = texts[text_index]
@@ -222,6 +233,44 @@ def run_game():
 
                     results.get_results(0, 5, 0)
 
+                    # checks if the current pop percent is over the previous pop percent then
+                    # gives it an up arrow
+                    if(prevpopulation + pop) > prevpopulation:
+                        uparrow(740, 215)
+                    # checks if the current pop percent is under the previous pop percent then
+                    # gives it an down arrow
+                    elif(prevpopulation + pop) < prevpopulation:
+                        downarrow(740, 215)
+                    # nothing should happen since the percent didnt change
+                    else:
+                        neutral(740, 215)
+                        # print("no change p")
+
+                    # checks if the current morale percent is over the previous morale percent then
+                    # gives it an up arrow
+                    if(mor + prevmorale) > prevmorale:
+                        uparrow(740, 455)
+                    # checks if the current morale percent is under the previous morale percent then
+                    # gives it an down arrow
+                    elif(mor + prevmorale) < prevmorale:
+                        downarrow(740, 455)
+                    # nothing should happen since the percent didnt change
+                    else:
+                        neutral(740, 455)
+                        # print("no change m")
+
+                    # checks if the current diseased percent is over the previous diseased percent then
+                    # gives it an up arrow
+                    if(dis + prevdiseased) > prevdiseased:
+                        uparrow(740, 335)
+                    # checks if the current diseased percent is under the previous diseased percent then
+                    # gives it an down arrow
+                    elif(dis + prevdiseased) < prevdiseased:
+                        downarrow(740, 335)
+                    # nothing should happen since the percent didnt change
+                    else:
+                        neutral(740, 335)
+                        # print("no change d")
 
                     #move to the next text box. We might want to change this later
                     text_index += 1
@@ -236,20 +285,26 @@ def run_game():
                     )
 
                 if noButtonPosition.collidepoint(mouse_pos):
+
+                    #clears out the previous week variable
                     textsurface = myfont.render(str(results.week), False, (0, 0, 0))
                     ourDisplay.blit(textsurface, (730, 70))
 
                     #clears out the previous population variable
                     textsurface = myfont.render(str(results.population) + "%", False, (0, 0, 0))
                     ourDisplay.blit(textsurface, (700, 210))
+                    prevpopulation = int(results.population)
 
                     #clears out the previous diseased variable
                     textsurface = myfont.render(str(results.diseased) + "%", False, (0, 0, 0))
                     ourDisplay.blit(textsurface, (700, 330))
+                    prevdiseased = int(results.diseased)
 
                     #clears out the previous morale variable
                     textsurface = myfont.render(str(results.morale) + "%", False, (0, 0, 0))
                     ourDisplay.blit(textsurface, (700, 450))
+                    prevmorale = int(results.morale)
+
                     #get proper results
                     result = texts[text_index]
                     pop = int(result["pop_n"])
@@ -257,6 +312,45 @@ def run_game():
                     dis = int(result["dis_n"])
 
                     results.get_results(-5, -6, -5)
+
+                    # checks if the current pop percent is over the previous pop percent then
+                    # gives it an up arrow
+                    if(prevpopulation + pop) > prevpopulation:
+                        uparrow(740, 215)
+                    # checks if the current pop percent is under the previous pop percent then
+                    # gives it an down arrow
+                    elif(prevpopulation + pop) < prevpopulation:
+                        downarrow(740, 215)
+                    # nothing should happen since the percent didnt change
+                    else:
+                        neutral(740, 215)
+                        # print("no change p")
+
+                    # checks if the current morale percent is over the previous morale percent then
+                    # gives it an up arrow
+                    if(mor + prevmorale) > prevmorale:
+                        uparrow(740, 455)
+                    # checks if the current morale percent is under the previous morale percent then
+                    # gives it an down arrow
+                    elif(mor + prevmorale) < prevmorale:
+                        downarrow(740, 455)
+                    # nothing should happen since the percent didnt change
+                    else:
+                        neutral(740, 455)
+                        # print("no change m")
+
+                    # checks if the current diseased percent is over the previous diseased percent then
+                    # gives it an up arrow
+                    if(dis + prevdiseased) > prevdiseased:
+                        uparrow(740, 335)
+                    # checks if the current diseased percent is under the previous diseased percent then
+                    # gives it an down arrow
+                    elif(dis + prevdiseased) < prevdiseased:
+                        downarrow(740, 335)
+                    # nothing should happen since the percent didnt change
+                    else:
+                        neutral(740, 335)
+                        # print("no change d")
 
                     #move to the next text box. We might want to change this later
                     text_index += 1
@@ -313,8 +407,10 @@ def text_objects(text, font):
     black = (0,0,0)
     textSurface = font.render(text, True, black)
     return textSurface, textSurface.get_rect()
-def game_intro():
 
+
+
+def game_intro():
     intro = True
     clock = pygame.time.Clock()
     display_width = 800
@@ -343,8 +439,10 @@ def game_intro():
             if event.type == MOUSEBUTTONDOWN:
                 mouse_pos = event.pos # Now it will have the coordinates of click point.
                 if playImgPosition.collidepoint(mouse_pos):
+                    ourDisplay.blit(background,(0,0))
                     intro = False
                 if exitImgPosition.collidepoint(mouse_pos):
+                    ourDisplay.blit(background,(0,0))
                     exit()
 
         ourDisplay.blit(background,(0,0))
@@ -352,15 +450,70 @@ def game_intro():
         textsurface = myfont.render('Disease Control', False,white)
         #text_rect = TextRect.get_rect(center=(display_width/2, display_height))
 
+        ourDisplay.blit(background,(0,0))
         ourDisplay.blit(textsurface,(250,0))
         ourDisplay.blit(playImg, playImgPosition)
         ourDisplay.blit(exitImg, exitImgPosition)
         pygame.display.update()
         clock.tick(15)
 
-
-
 game_intro()
+
+pygame.init()
+# Create TextInput-object
+textinput = gui.pygame_textinput.TextInput()
+
+#Creating mayor
+ourDisplay = pygame.display.set_mode((800, 600))
+running = True
+runningAgain = True
+background = pygame.image.load('titleScreen.png')
+def message_display(text):
+    largeText = pygame.font.Font('OrthodoxHerbertarian.ttf',40)
+    TextSurf, TextRect = text_main(text, largeText)
+    TextRect.center = ((display_width/2),(400))
+    ourDisplay.blit(TextSurf, TextRect)
+def text_main(text, font):
+    black = (255,255,255)
+    textSurface = font.render(text, True, black)
+    return textSurface, textSurface.get_rect()
+while running:
+    myfont = pygame.font.SysFont('Comic Sans MS', 20)
+    ourDisplay.blit(background,(0,0))
+    events = pygame.event.get()
+    message_display('Enter name of your mayor')
+    for event in events:
+        if event.type == pygame.QUIT:
+            exit()
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RETURN:
+                major = textinput.input_string
+                textinput.input_string = ""
+                running = False
+    # Feed it with events every frame
+    textinput.update(events)
+    # Blit its surface onto the screen
+    ourDisplay.blit(textinput.get_surface(), (350, 500))
+    pygame.display.update()
+
+while runningAgain:
+    myfont = pygame.font.SysFont('Comic Sans MS', 20)
+    ourDisplay.blit(background,(0,0))
+    events = pygame.event.get()
+    message_display('Enter a name for your city')
+    for event in events:
+        if event.type == pygame.QUIT:
+            exit()
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RETURN:
+                city = textinput.input_string
+                textinput.input_string = ""
+                runningAgain = False
+    # Feed it with events every frame
+    textinput.update(events)
+    # Blit its surface onto the screen
+    ourDisplay.blit(textinput.get_surface(), (350, 500))
+    pygame.display.update()
 run_game()
 
 
