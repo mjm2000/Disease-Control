@@ -4,8 +4,6 @@ import pygame_gui
 import gui.sideBar
 from pygame.locals import *
 
-from event_test.results import get_results
-
 #this is just some dummy data
 texts = [
     {
@@ -73,14 +71,13 @@ texts = [
     }
 ]
 
-text_index = 0
-n = 0
 
 def run_game():
     pygame.init()
     pygame.display.set_caption('Disease Control')
 
     white = (255,255,255)
+    red = (255,0,0)
 
     display_width = 800
     display_height = 600
@@ -94,6 +91,10 @@ def run_game():
 
     yesButtonImg = pygame.image.load('greenButtonwoop.png')
     yesButtonHover = pygame.image.load('greenButton.png')
+    backgroundImage = pygame.image.load('background.png')
+
+    decreasearrowImg = pygame.image.load('downvote.png')
+    increasingarrowImg = pygame.image.load('upvote.png')
 
     #This is the yes Button
     yesButtonPosition = Rect(0,0,0,400)
@@ -101,7 +102,17 @@ def run_game():
     yesButtonPosition = yesButtonImg.get_rect()
     yesButtonPosition = yesButtonPosition.move(0,400)
 
+        #Hover
+        if yesButtonPosition.collidepoint(pygame.mouse.get_pos()):
+            ourDisplay.blit(yesButtonHover, yesButtonPosition)
+        else:
+            ourDisplay.blit(yesButtonImg,yesButtonPosition)
 
+        #Click
+        if event.type == MOUSEBUTTONDOWN:
+            mouse_pos = event.pos # Now it will have the coordinates of click point.
+            if yesButtonPosition.collidepoint(mouse_pos):
+                print("yes")
 
     #This is the No button
     noButtonPosition = Rect(0,300,0,400)
@@ -109,6 +120,22 @@ def run_game():
     noButtonPosition = noButtonImg.get_rect()
     noButtonPosition = noButtonPosition.move(300,400)
 
+        #Hover
+        if noButtonPosition.collidepoint(pygame.mouse.get_pos()):
+            ourDisplay.blit(noButtonImgHover, noButtonPosition)
+        else:
+            ourDisplay.blit(noButtonImg,noButtonPosition)
+
+        if event.type == MOUSEBUTTONDOWN:
+            mouse_pos = event.pos # Now it will have the coordinates of click point.
+            if noButtonPosition.collidepoint(mouse_pos):
+                print("no")
+        #TODO Clickable Button changes button when clicked
+    def downarrow(x, y):
+        ourDisplay.blit(decreasearrowImg, (x + 20, y))
+
+    def uparrow(x, y):
+        ourDisplay.blit(increasingarrowImg, (x + 80, y))
 
     #these are the texts for the sidebar
     myfont = pygame.font.SysFont('Comic Sans MS', 20)
@@ -127,8 +154,6 @@ def run_game():
 
     is_running = True
     while is_running:
-
-
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 is_running = False
