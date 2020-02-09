@@ -20,6 +20,7 @@ def run_game():
     pygame.display.set_caption('Disease Control')
 
     white = (255,255,255)
+    red = (255,0,0)
 
     display_width = 800
     display_height = 600
@@ -33,6 +34,10 @@ def run_game():
 
     yesButtonImg = pygame.image.load('greenButtonwoop.png')
     yesButtonHover = pygame.image.load('greenButton.png')
+    backgroundImage = pygame.image.load('background.png')
+
+    decreasearrowImg = pygame.image.load('downvote.png')
+    increasingarrowImg = pygame.image.load('upvote.png')
 
     #These two methods create a yes and a no button
     def yesButton(x,y):
@@ -72,6 +77,11 @@ def run_game():
             if noButtonPosition.collidepoint(mouse_pos):
                 print("no")
         #TODO Clickable Button changes button when clicked
+    def downarrow(x, y):
+        ourDisplay.blit(decreasearrowImg, (x + 20, y))
+
+    def uparrow(x, y):
+        ourDisplay.blit(increasingarrowImg, (x + 80, y))
 
     #these are the texts for the sidebar
     myfont = pygame.font.SysFont('Comic Sans MS', 20)
@@ -95,9 +105,10 @@ def run_game():
             if event.type == pygame.QUIT:
                 is_running = False
             manager.process_events(event)
-        ourDisplay.fill(white)
-        yesButton(0,400)
         black = (0,0,0)
+        ourDisplay.fill(black)
+        ourDisplay.blit(backgroundImage,(0,0))
+        yesButton(0,400)
         pygame.draw.rect(ourDisplay,black,(600,0,700,600))
         gui.sideBar.weektitle(660,70)
         gui.sideBar.weekvariable(730, 70, "1")
@@ -116,7 +127,6 @@ def run_game():
 
         #draws the textbox
         manager.draw_ui(ourDisplay)
-        pygame.draw.rect(ourDisplay,black,(600,0,700,600))
 
         pygame.display.update()
 
