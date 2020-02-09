@@ -8,71 +8,8 @@ from event_test import results
 from event_test import html_reader
 
 #this is just some dummy data
-texts = [
-    {
-        "text": "<p>A man has fallen into the river in lego city!</p>",
-        "pop_y": "0",
-        "mor_y": "7",
-        "dis_y": "0",
-        "pop_n": "-5",
-        "mor_n": "-7",
-        "dis_n": "0"
-    },
-    {
-        "text": "<p>Start the new rescue helicopter!</p>",
-        "pop_y": "0",
-        "mor_y": "7",
-        "dis_y": "0",
-        "pop_n": "-5",
-        "mor_n": "-7",
-        "dis_n": "5"
-    },
-    {
-        "text": "<p>HEY!!</p>",
-        "pop_y": "0",
-        "mor_y": "7",
-        "dis_y": "0",
-        "pop_n": "-5",
-        "mor_n": "-7",
-        "dis_n": "5"
-    },
-    {
-        "text": "<p>Build the helicopter and off to the rescue!</p>",
-        "pop_y": "0",
-         "mor_y": "7",
-        "dis_y": "0",
-        "pop_n": "-5",
-        "mor_n": "-7",
-        "dis_n": "5"
-    },
-    {
-        "text": "<p>Prepare the lifeline!</p>",
-        "pop_y": "0",
-        "mor_y": "7",
-        "dis_y": "0",
-        "pop_n": "-5",
-        "mor_n": "-7",
-        "dis_n": "5"
-    },
-    {
-        "text": "<p>Lower the stretcher!</p>",
-        "pop_y": "0",
-        "mor_y": "7",
-        "dis_y": "0",
-        "pop_n": "-5",
-        "mor_n": "-7",
-        "dis_n": "5"
-    },
-    {
-        "text": "<p>And make the rescue!</p>",
-        "pop_y": "0",
-        "mor_y": "7",
-        "dis_y": "0",
-        "pop_n": "-5",
-        "mor_n": "-7",
-        "dis_n": "5"
-    }
-]
+texts = html_reader.read_file("jim","buffalo" ) 
+
 
 # answers = {
 #     "1.1":
@@ -179,9 +116,11 @@ def run_game():
     #this is the text box
 
     #Creating the first instance of the text box
-    global text_index
+    global html_nan 
+    
+    question_number =  str(results.question) 
     event_text_1 = pygame_gui.elements.ui_text_box.UITextBox(
-        texts[text_index]['text'],
+        texts[question_number],
         relative_rect=pygame.Rect(
             (1,249),
             (598,150)
@@ -216,19 +155,18 @@ def run_game():
                     ourDisplay.blit(textsurface, (700, 450))
 
                     #get proper results
-                    result = texts[text_index]
-                    pop = int(result["pop_y"])
-                    mor = int(result["mor_y"])
-                    dis = int(result["dis_y"])
+                    result['yes'] = event_json[question_number]
+                    mor = int(result[1])
+                    pop = int(result[2])
+                    dis = int(result[3])
 
-                    results.get_results(0, 5, 0)
+                    results.get_results(mor,pop,dis)
 
 
                     #move to the next text box. We might want to change this later
-                    text_index += 1
 
                     event_text_1 = pygame_gui.elements.ui_text_box.UITextBox(
-                        texts[text_index]['text'],
+                        texts[question_number],
                         relative_rect=pygame.Rect(
                             (1,249),
                             (598,150)
@@ -252,12 +190,12 @@ def run_game():
                     textsurface = myfont.render(str(results.morale) + "%", False, (0, 0, 0))
                     ourDisplay.blit(textsurface, (700, 450))
                     #get proper results
-                    result = texts[text_index]
-                    pop = int(result["pop_n"])
-                    mor = int(result["mor_n"])
-                    dis = int(result["dis_n"])
+                    result['no'] = event_json[question_number]
+                    mor = int(result[1])
+                    pop = int(result[2])
+                    dis = int(result[3])
 
-                    results.get_results(-5, -6, -5)
+                    results.get_results(mor,pop,dis)
 
                     #move to the next text box. We might want to change this later
                     text_index += 1
