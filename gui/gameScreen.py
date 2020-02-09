@@ -106,17 +106,17 @@ def run_game():
     yesButtonPosition = yesButtonImg.get_rect()
     yesButtonPosition = yesButtonPosition.move(0,400)
 
-  #  global n
-
     #This is the No button
     noButtonPosition = Rect(0,300,0,400)
     noButtonPosition.collidepoint(pygame.mouse.get_pos())
     noButtonPosition = noButtonImg.get_rect()
     noButtonPosition = noButtonPosition.move(300,400)
 
+    #Creates down arrow
     def downarrow(x, y):
         ourDisplay.blit(decreasearrowImg, (x + 20, y))
 
+    #Creates up arrow
     def uparrow(x, y):
         ourDisplay.blit(increasingarrowImg, (x + 80, y))
 
@@ -126,6 +126,7 @@ def run_game():
 
     #this is the text box
 
+    #Creating the first instance of the text box
     global text_index
     event_text_1 = pygame_gui.elements.ui_text_box.UITextBox(
         texts[text_index]['text'],
@@ -136,6 +137,7 @@ def run_game():
         manager=manager
     )
 
+    #Increments through the dummy data dictionary
     text_index = 0
 
     is_running = True
@@ -145,6 +147,7 @@ def run_game():
                 is_running = False
 
 
+            #CLicking the buttons
             if event.type == MOUSEBUTTONDOWN:
                 mouse_pos = event.pos # Now it will have the coordinates of click point.
                 if yesButtonPosition.collidepoint(mouse_pos):
@@ -173,6 +176,9 @@ def run_game():
 
                 if noButtonPosition.collidepoint(mouse_pos):
                     #keeps track of current question
+
+                    #Goes over the current percentage and coloring it red and creating the down arror
+                    #for each category
                     textsurface = myfont.render("%", False, (255, 0, 0))
                     ourDisplay.blit(textsurface, (730, 200))
                     ourDisplay.blit(textsurface, (730, 320))
