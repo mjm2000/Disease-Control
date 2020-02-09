@@ -5,75 +5,12 @@ import gui.sideBar
 import gui.pygame_textinput
 from pygame.locals import *
 from event_test import results
-
+from event_test import  html_reader
 #from event_test import html_reader
 
 #this is just some dummy data
-texts = [
-    {
-        "text": "<p>A man has fallen into the river in lego city!</p>",
-        "pop_y": "0",
-        "mor_y": "7",
-        "dis_y": "0",
-        "pop_n": "-5",
-        "mor_n": "-7",
-        "dis_n": "0"
-    },
-    {
-        "text": "<p>Start the new rescue helicopter!</p>",
-        "pop_y": "0",
-        "mor_y": "7",
-        "dis_y": "0",
-        "pop_n": "-5",
-        "mor_n": "-7",
-        "dis_n": "5"
-    },
-    {
-        "text": "<p>HEY!!</p>",
-        "pop_y": "0",
-        "mor_y": "7",
-        "dis_y": "0",
-        "pop_n": "-5",
-        "mor_n": "-7",
-        "dis_n": "5"
-    },
-    {
-        "text": "<p>Build the helicopter and off to the rescue!</p>",
-        "pop_y": "0",
-        "mor_y": "7",
-        "dis_y": "0",
-        "pop_n": "-5",
-        "mor_n": "-7",
-        "dis_n": "5"
-    },
-    {
-        "text": "<p>Prepare the lifeline!</p>",
-        "pop_y": "0",
-        "mor_y": "7",
-        "dis_y": "0",
-        "pop_n": "-5",
-        "mor_n": "-7",
-        "dis_n": "5"
-    },
-    {
-        "text": "<p>Lower the stretcher!</p>",
-        "pop_y": "0",
-        "mor_y": "7",
-        "dis_y": "0",
-        "pop_n": "-5",
-        "mor_n": "-7",
-        "dis_n": "5"
-    },
-    {
-        "text": "<p>And make the rescue!</p>",
-        "pop_y": "0",
-        "mor_y": "7",
-        "dis_y": "0",
-        "pop_n": "-5",
-        "mor_n": "-7",
-        "dis_n": "5"
-    }
-]
+
+
 
 answers = {
     "1.1":
@@ -113,6 +50,49 @@ answers = {
             "dis": (0, 5)
         }
 }
+texts = html_reader.read_file("jim","buffalo" ) 
+
+
+# answers = {
+#     "1.1":
+#         {
+#             "pop": (0, -5),
+#             "mor": (0, -7),
+#             "dis": (0, 5)
+#         },
+#     "2.1":
+#         {
+#             "pop": (0, -6),
+#             "mor": (7, -7),
+#             "dis": (0, 6),
+#         },
+#     "3.1":
+#         {
+#             "pop": (0, -8),
+#             "mor": (7, 5),
+#             "dis": (0, 8)
+#         },
+#     "4.1":
+#         {
+#             "pop": (0, -5),
+#             "mor": (7, -1),
+#             "dis": (0, 5)
+#         },
+#     "5.1":
+#         {
+#             "pop": (0, -9),
+#             "mor": (7, 0),
+#             "dis": (0, 9)
+#         },
+#     "6.1":
+#         {
+#             "pop": (0, -5),
+#             "mor": (7, -7),
+#             "dis": (0, 5)
+#         }
+# }
+
+
 
 
 
@@ -184,9 +164,12 @@ def run_game():
     #this is the text box
 
     #Creating the first instance of the text box
-    global text_index
+    global html_nan 
+    
+    question_number =  str(results.question)
+    print(texts)
     event_text_1 = pygame_gui.elements.ui_text_box.UITextBox(
-        texts[text_index]['text'],
+        texts[question_number],
         relative_rect=pygame.Rect(
             (1,249),
             (598,150)
@@ -226,12 +209,13 @@ def run_game():
                     prevmorale = int(results.morale)
 
                     #get proper results
-                    result = texts[text_index]
-                    pop = int(result["pop_y"])
-                    mor = int(result["mor_y"])
-                    dis = int(result["dis_y"])
+                    event_json = html_reader.json_reader()
+                    result = event_json['events'][question_number]['yes']
+                    mor = int(result[1])
+                    pop = int(result[2])
+                    dis = int(result[3])
 
-                    results.get_results(0, 5, 0)
+                    results.get_results(mor,pop,dis)
 
                     # checks if the current pop percent is over the previous pop percent then
                     # gives it an up arrow
@@ -272,11 +256,12 @@ def run_game():
                         neutral(740, 335)
                         # print("no change d")
 
-                    #move to the next text box. We might want to change this later
-                    text_index += 1
 
+                    #move to the next text box. We might want to change this later
+                    question_number = str(results.change_question(True))
+                    print(question_number)
                     event_text_1 = pygame_gui.elements.ui_text_box.UITextBox(
-                        texts[text_index]['text'],
+                        texts[question_number],
                         relative_rect=pygame.Rect(
                             (1,249),
                             (598,150)
@@ -307,12 +292,13 @@ def run_game():
                     prevmorale = int(results.morale)
 
                     #get proper results
-                    result = texts[text_index]
-                    pop = int(result["pop_n"])
-                    mor = int(result["mor_n"])
-                    dis = int(result["dis_n"])
+                    event_json = html_reader.json_reader()
+                    result = event_json['events'][question_number]['no']
+                    mor = int(result[1])
+                    pop = int(result[2])
+                    dis = int(result[3])
 
-                    results.get_results(-5, -6, -5)
+                    results.get_results(mor,pop,dis)
 
                     # checks if the current pop percent is over the previous pop percent then
                     # gives it an up arrow
@@ -354,10 +340,10 @@ def run_game():
                         # print("no change d")
 
                     #move to the next text box. We might want to change this later
-                    text_index += 1
+                    question_number = str(results.change_question(False))
 
                     event_text_1 = pygame_gui.elements.ui_text_box.UITextBox(
-                        texts[text_index]['text'],
+                        texts[question_number],
                         relative_rect=pygame.Rect(
                             (1,249),
                             (598,150)
@@ -517,7 +503,7 @@ while runningAgain:
     # Blit its surface onto the screen
     ourDisplay.blit(textinput.get_surface(), (350, 500))
     pygame.display.update()
-print(city)
+
 run_game()
 
 

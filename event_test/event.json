@@ -1,32 +1,69 @@
  {
     "events":{
-        "event  #1.1":{
-            "yes":[0,0,0],
-            "no":[0,0,0]
+        "1.1":{
+            "yes":["we do this",0,0,0],
+            "no":["we do this",0,0,0]
         },
-        "event  #2.1":{
-            "yes":[-1,0,0],
-            "no":[0,0,0]
+        "2.1":{
+            "yes":["we do this",-10,0,0],
+            "no":["we do this",0,0,-5]
         },
-        "event  #3.1":{
-            "yes":[0,0,0],
-            "no":[0,0,0]
+        "3.1":{
+            "yes":["we do this",-5,0,0],
+            "no":["we do this",0,0,-10]
         },
-        "event  #4.1":{
-            "yes":[0,0,0],
-            "no":[0,0,0]
+        "3.2":{
+            "yes":["we do this",-2,0,0],
+            "no":[ "no we don't",0,0,-10]
         },
-        "event  #5.1":{
-            "yes":[0,0,0],
-            "no":[0,0,0]
+        "4.0":{
+            "yes":["we do this",-20,0,0],
+            "no":[ "no we don't",0,0,-10]
         },
-        "event  #6.1":{
-            "yes":[0,0,0],
-            "no":[0,0,0]
+        "4.1":{
+            "yes":["we do this",-10,0,0],
+            "no":["we do this",0,0,-10]
+        },
+        "4.2":{
+            "yes":["we do this",-5,0,0],
+            "no":[ "no we don't",0,0,-20]
+        },
+        "5.0":{
+            "yes":["we do this",-25,-5,0],
+            "no":[ "no we don't",-20,0,-15]
+        },
+        "5.1":{
+            "yes":["we do this",-15,-5,0],
+            "no":["we do this",0,0,-10]
+        },
+        "5.2":{
+            "yes":["we do this",-10,0,10],
+            "no":[ "no we don't",0,0,0]
+        },
+        "6.0":{
+            "yes":["we do this"15,0,5],
+            "no":["we do this",0,0,0]
+        },
+        "6.1":{
+            "yes":["we do this",0,0,0],
+            "no":["we do this",0,0,0]
+        },
+        "6.2":{
+            "yes":["we do this",0,0,0],
+            "no":["we do this",0,0,0]
+        },
+        "7.0":{
+            "yes":["we do this",0,0,0],
+            "no":[ "no we don't",0,0,0]
+        },
+        "7.1":{
+            "yes":["we do this",0,0,0],
+            "no":[ "no we don't",0,0,0]
+        },
+        "7.2":{
+            "yes":["we do this",0,0,0],
+            "no":[ "no we don't",0,0,0]
         }
     }
-]
-
-        
 
 }
