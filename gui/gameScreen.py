@@ -5,6 +5,8 @@ import gui.sideBar
 from pygame.locals import *
 from event_test import results
 
+from event_test import html_reader
+
 #this is just some dummy data
 texts = [
     {
@@ -128,6 +130,11 @@ answers = {
             "dis_n": 5
         }
 }
+
+mayor = ""
+city = ""
+
+questions = html_reader(mayor, city)
 
 text_index = 0
 def run_game():
