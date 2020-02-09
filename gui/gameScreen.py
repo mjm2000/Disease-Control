@@ -134,7 +134,7 @@ answers = {
 mayor = ""
 city = ""
 
-questions = html_reader(mayor, city)
+#questions = html_reader(mayor, city)
 
 text_index = 0
 global ourDisplay, display_width,display_height,clock
