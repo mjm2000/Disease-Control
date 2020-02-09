@@ -35,4 +35,4 @@ def read_file(mayor,city):
             
         return events
 
-read_file("jimbo","Moscow")
+# read_file("jimbo","Moscow")
