@@ -1,5 +1,4 @@
 
-
 # def run_game():
 #     pygame.init()
 #     pygame.display.set_caption('Hello Gamers')
@@ -64,7 +63,6 @@
 #
 #
 # run_game()
-
 import pygame
 import pygame_gui
 from pygame.locals import *

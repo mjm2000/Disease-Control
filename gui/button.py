@@ -3,6 +3,9 @@ import pygame
 import pygame_gui
 import gui.sideBar
 from pygame.locals import *
+
+
+
 pygame.init()
 white = (255,255,255)
 
