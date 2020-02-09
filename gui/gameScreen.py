@@ -5,6 +5,8 @@ import gui.sideBar
 from pygame.locals import *
 from event_test import results
 
+from event_test import html_reader
+
 #this is just some dummy data
 texts = [
     {
@@ -71,6 +73,68 @@ texts = [
         "dis_n": "5"
     }
 ]
+
+answers = {
+    "1.1":
+        {
+            "pop_y": 0,
+            "mor_y": 0,
+            "dis_y": 0,
+            "pop_n": -5,
+            "mor_n": -7,
+            "dis_n": 5
+        },
+    "2.1":
+        {
+            "pop_y": 0,
+            "mor_y": 7,
+            "dis_y": 0,
+            "pop_n": -6,
+            "mor_n": -7,
+            "dis_n": 6
+        },
+    "3.1":
+        {
+            "pop_y": 0,
+            "mor_y": 7,
+            "dis_y": 0,
+            "pop_n": -8,
+            "mor_n": 5,
+            "dis_n": 8
+        },
+    "4.1":
+        {
+            "pop_y": 0,
+            "mor_y": 7,
+            "dis_y": 0,
+            "pop_n": -5,
+            "mor_n": -1,
+            "dis_n": 5
+        },
+    "5.1":
+        {
+            "pop_y": 0,
+            "mor_y": 7,
+            "dis_y": 0,
+            "pop_n": -9,
+            "mor_n": 0,
+            "dis_n": 9
+        },
+    "6.1":
+        {
+            "pop_y": 0,
+            "mor_y": 7,
+            "dis_y": 0,
+            "pop_n": -5,
+            "mor_n": -7,
+            "dis_n": 5
+        }
+}
+
+mayor = ""
+city = ""
+
+questions = html_reader(mayor, city)
 
 text_index = 0
 global ourDisplay, display_width,display_height,clock
