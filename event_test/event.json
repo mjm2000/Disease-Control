@@ -2,15 +2,15 @@
     "events":{
         "1.1":{
             "yes":["we do this",0,0,0],
-            "no":["we do this",0,0,0]
+            "no":["no we don't",0,0,0]
         },
         "2.1":{
             "yes":["we do this",-10,0,0],
-            "no":["we do this",0,0,-5]
+            "no":["no we don't",0,0,-5]
         },
         "3.1":{
             "yes":["we do this",-5,0,0],
-            "no":["we do this",0,0,-10]
+            "no":["no we don't",0,0,-10]
         },
         "3.2":{
             "yes":["we do this",-2,0,0],
@@ -34,35 +34,35 @@
         },
         "5.1":{
             "yes":["we do this",-15,-5,0],
-            "no":["we do this",0,0,-10]
+            "no":["no we don't",0,0,-10]
         },
         "5.2":{
             "yes":["we do this",-10,0,10],
             "no":[ "no we don't",0,0,0]
         },
         "6.0":{
-            "yes":["we do this"15,0,5],
-            "no":["we do this",0,0,0]
+            "yes":["we do this",-15,0,5],
+            "no":["no we don't",0,-5,-10]
         },
         "6.1":{
-            "yes":["we do this",0,0,0],
-            "no":["we do this",0,0,0]
+            "yes":["we do this",-10,0,5],
+            "no":["no we don't",0,0,0]
         },
         "6.2":{
-            "yes":["we do this",0,0,0],
-            "no":["we do this",0,0,0]
+            "yes":["we do this",5,0,0],
+            "no":["no we don't",0,5,0]
         },
         "7.0":{
-            "yes":["we do this",0,0,0],
-            "no":[ "no we don't",0,0,0]
+            "yes":["we do this",0,-10,0],
+            "no":[ "no we don't",0,-20,0]
         },
         "7.1":{
-            "yes":["we do this",0,0,0],
-            "no":[ "no we don't",0,0,0]
+            "yes":["we do this",0,-10,0],
+            "no":[ "no we don't",0,-15,0]
         },
         "7.2":{
-            "yes":["we do this",0,0,0],
-            "no":[ "no we don't",0,0,0]
+            "yes":["we do this",0,-5,0],
+            "no":[ "no we don't",10,0,0]
         }
     }
 
