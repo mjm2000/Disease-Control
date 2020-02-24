@@ -6,35 +6,35 @@
         },
         "2.1":{
             "yes":["we do this",-10,0,0],
-            "no":["no we don't",0,0,-5]
+            "no":["no we don't",0,0,5]
         },
         "3.1":{
             "yes":["we do this",-5,0,0],
-            "no":["no we don't",0,0,-10]
+            "no":["no we don't",0,0,10]
         },
         "3.2":{
             "yes":["we do this",-2,0,0],
-            "no":[ "no we don't",0,0,-10]
+            "no":[ "no we don't",0,0,10]
         },
         "4.0":{
             "yes":["we do this",-20,0,0],
-            "no":[ "no we don't",0,0,-10]
+            "no":[ "no we don't",0,0,10]
         },
         "4.1":{
             "yes":["we do this",-10,0,0],
-            "no":["we do this",0,0,-10]
+            "no":["we do this",0,0,10]
         },
         "4.2":{
             "yes":["we do this",-5,0,0],
-            "no":[ "no we don't",0,0,-20]
+            "no":[ "no we don't",0,0,20]
         },
         "5.0":{
             "yes":["we do this",-25,-5,0],
-            "no":[ "no we don't",-20,0,-15]
+            "no":[ "no we don't",-20,0,15]
         },
         "5.1":{
             "yes":["we do this",-15,-5,0],
-            "no":["no we don't",0,0,-10]
+            "no":["no we don't",0,0,10]
         },
         "5.2":{
             "yes":["we do this",-10,0,10],
