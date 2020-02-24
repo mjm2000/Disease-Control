@@ -23,7 +23,6 @@ def text_main(text, font):
     return textSurface, textSurface.get_rect()
 def makeMayor():
     while running:
-        myfont = pygame.font.SysFont('Comic Sans MS', 20)
         ourDisplay.blit(background,(0,0))
         events = pygame.event.get()
         message_display('Enter name of your mayor')
@@ -43,7 +42,6 @@ def makeMayor():
 
 def makeCity():
     while runningAgain:
-        myfont = pygame.font.SysFont('Comic Sans MS', 20)
         ourDisplay.blit(background,(0,0))
         events = pygame.event.get()
         message_display('Enter a name for your city')
